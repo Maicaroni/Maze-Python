@@ -609,7 +609,12 @@ function makeMaze() {
     maze = new Maze(difficulty, difficulty);
     draw = new DrawMaze(maze, ctx, cellSize, finishSprite);
     player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
-    player.moves = 0; // Explicitly initialize moves
+    
+    // Reset player state
+    player.moves = 0;
+    player.hearts = 3;
+    player.heartLostThisRun = false;
+    updateHeartsDisplay(player.hearts); // Update the hearts display
 
     // Remove or modify this condition
     if (document.getElementById("mazeContainer").style.opacity < "100") {
@@ -620,7 +625,7 @@ function makeMaze() {
     draw.redrawMaze(cellSize);
     player.redrawPlayer(cellSize);
 
-    console.log('Maze created and buttons set up');
+    console.log('Maze created, hearts reset to 3, and buttons set up');
 
     // Start music if it's not already playing
     if (!isMusicPlaying) {
