@@ -412,6 +412,18 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
     this.resetPosition = function() {
         console.log('Resetting player position to start');
+        
+        // Increment death count before resetting
+        deathCount++;
+        console.log(`Death count: ${deathCount}`);
+        
+        // Show learning prompt if deaths reach threshold
+        if (deathCount >= MAX_DEATHS) {
+            showLearningPrompt();
+            deathCount = 0; // Reset death count after showing prompt
+        }
+        
+        // Keep existing reset functionality
         this.cellCoords = {
             x: maze.startCoord().x,
             y: maze.startCoord().y
@@ -968,4 +980,30 @@ function closeModal(modalId) {
 document.getElementById('infoToggle').addEventListener('click', function() {
     showModal('infoModal');
 });
+
+// Add at the top with other global variables
+let deathCount = 0;
+const MAX_DEATHS = 3;
+
+// Add this new function for the learning prompt
+function showLearningPrompt() {
+    const modalHtml = `
+    <div id="learningModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('learningModal')">&times;</span>
+            <h2>Need Help?</h2>
+            <p>Oops! It looks like you're having a hard time with using loops.</p>
+            <p>You can refer to the learning module by interacting with the books in the CodeHub.</p>
+            <p>Take your time to understand the loop syntax before trying again!</p>
+            <div class="modal-buttons">
+                <button onclick="closeModal('learningModal')" class="got-it-btn">Got it!</button>
+            </div>
+        </div>
+    </div>`;
+
+    if (!document.getElementById('learningModal')) {
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+    showModal('learningModal');
+}
 

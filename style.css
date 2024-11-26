@@ -436,3 +436,40 @@ button:hover {
     margin-bottom: 15px; /* Optional: Add space below the paragraph */
 }
 
+#learningModal .modal-content {
+    text-align: center;
+}
+
+#learningModal h2 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+#learningModal p {
+    margin: 15px 0;
+    line-height: 1.6;
+    font-size: 11px; /* Slightly smaller font for better readability */
+}
+
+#learningModal .modal-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.got-it-btn {
+    background-color: #2e7d32;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.got-it-btn:hover {
+    background-color: #1b5e20;
+}
+
